@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: "Arial Black";
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+<div class="flex justify-around">
+    {% for i in articles %}
+    <div class="card card-dash bg-base-100 w-96 border border-3 shadow shadow-2xl mt-[100px]">
+        <div class="card-body">
+            <h2 class="card-title">Card Title</h2>
+            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+            <div class="card-actions justify-end">
+                <button class="btn btn-primary">Buy Now</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>
