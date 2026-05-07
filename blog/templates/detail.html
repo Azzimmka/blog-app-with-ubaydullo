@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="w-[350px] border rounded-[20px] p-[10px] text-center m-auto mt-[50px]">
+        {% if article.image.url %}
+            <img src="{{ article.image.url }}" alt="">
+        {% endif %}
+        <h2 class="">{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <div class="">
+            <p class="">{{ article.view }}</p>
+            <p class="">{{ article.category }}</p>
+        </div>
+    </div>
+{% endblock %}

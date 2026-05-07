@@ -13,8 +13,9 @@ class Category(models.Model):
 class Articles(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    view = models.IntegerField()
+    view = models.IntegerField(default=10)
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, null=True, blank=True)
+    image = models.ImageField(upload_to='articles', null=True, blank=True)
 
 
     def __str__(self):
