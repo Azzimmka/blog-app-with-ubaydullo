@@ -8,6 +8,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'view']
     list_filter = ['category']
     readonly_fields = ['view']
+    prepopulated_fields = {"slug": ('title',)}
 
 admin.site.register(Articles, ArticleAdmin)
 admin.site.register(Category)

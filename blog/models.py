@@ -16,7 +16,7 @@ class Articles(models.Model):
     view = models.IntegerField(default=10)
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='articles', null=True, blank=True)
-
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.title

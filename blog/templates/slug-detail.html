@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="max-w-[800px] mx-auto px-6 py-20 font-sans">
+    <!-- Хлебные крошки / Категория -->
+    <div class="flex items-center gap-4 mb-8">
+        <a href="{% url 'home' %}" class="text-slate-400 uppercase tracking-widest">← Назад</a>
+        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+        {% if article.category %}
+            <span class="text-emerald-600 font-bold uppercase">{{ article.category }}</span>
+        {% endif %}
+    </div>
+
+    <!-- Заголовок -->
+    <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900">
+        {{ article.title }}
+    </h1>
+
+    <!-- Изображение -->
+    {% if article.image %}
+        <div class="mb-12">
+            <img src="{{ article.image.url }}" class="w-full rounded-3xl shadow-2xl">
+        </div>
+    {% endif %}
+
+    <!-- Текст статьи -->
+    <article class="prose prose-xl">
+        <p class="text-2xl text-slate-600">
+            {{ article.description }}
+        </p>
+    </article>
+
+</main>
+{% endblock %}
+

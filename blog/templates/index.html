@@ -4,9 +4,17 @@
 
 {% block content %}
 
-<div class="flex justify-around align-center max-w[1200px] m-auto mt-[200px]">
+<div class="flex flex-wrap gap-3 mt-12 justify-center">
+    {% for category in categories %}
+        <a href="{% url 'category' category.id %}" class="border rounded-[30px] hover:rounded-[0px]">
+            {{ category.title }}
+        </a>
+    {% endfor %}
+</div>
+
+<div class="flex justify-around flex-wrap align-center max-w[1200px] m-auto mt-[100px]">
     {% for i in articles %}
-    <div class="w-[350px] border rounded-[20px] p-[10px] text-center">
+    <div class="w-[350px] mt-[10px] border rounded-[20px] p-[10px] text-center">
         {% if i.image.url %}
             <img src="{{ i.image.url }}" alt="">
         {% endif %}
@@ -17,7 +25,7 @@
             <p class="">{{ i.category }}</p>
         </div>
 
-        <button class="w-[100px] bg-red-400 text-white rounded-[20px] "><a href="{% url 'detail' i.id %}">детальнее</a></button>
+        <button class="w-[100px] bg-red-400 text-white rounded-[20px] "><a href="{% url 'slug-detail' i.slug %}">детальнее</a></button>
     </div>
     {% endfor %}
 </div>

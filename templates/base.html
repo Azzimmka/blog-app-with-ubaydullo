@@ -21,8 +21,14 @@
             </nav>
 
             <div>
-                <button>Log in</button>
-                <button>Sign in</button>
+                {% if user.is_authenticated %}
+                    <p class="text-black">{{ user.username }}</p>
+                {% else %}
+                    <a href="admin">Log in</a>
+                {% endif %}
+
+
+
             </div>
         </div>
     </header>

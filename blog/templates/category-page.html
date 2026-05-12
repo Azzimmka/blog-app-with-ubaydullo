@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="max-w-[1100px] mx-auto p-5">
+    
+    <h1 class="text-3xl font-bold mb-10">{{ title }}</h1>
+
+    <div class="flex flex-wrap gap-5">
+        {% for i in articles %}
+            <div class="w-[340px] border p-4 rounded-lg">
+                {% if i.image %}
+                    <img src="{{ i.image.url }}" class="w-full h-40 object-cover rounded mb-3">
+                {% endif %}
+                
+                <h2 class="font-bold text-lg">
+                    <a href="{% url 'slug-detail' i.slug %}">{{ i.title }}</a>
+                </h2>
+                <div>
+                    <h4>Описание</h4>
+                    <p class="text-sm text-gray-500">{{ i.description }}</p>
+                </div>
+
+                <div>
+                    <h4>Просмотры</h4>
+                    <p class="text-sm text-gray-500">{{ i.view }} просмотров</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</main>
+{% endblock %}
