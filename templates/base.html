@@ -5,33 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+    <style>
+        body {
+            background-color: #F4F7FB;
+        }
+    </style>
 </head>
 <body>
 
-    <header class="w-full">
-        <div class="max-w-[1300px] m-auto flex justify-between items-center" >
-            <a href="{% url 'home' %}">LOGO</a>
-
-            <nav class="flex gap-[20px]">
-                <p>lorem</p>
-                <p>lorem</p>
-                <p>lorem</p>
-                <p>lorem</p>
-            </nav>
-
-            <div>
-                {% if user.is_authenticated %}
-                    <p class="text-black">{{ user.username }}</p>
-                {% else %}
-                    <a href="admin">Log in</a>
-                {% endif %}
-
-
-
-            </div>
-        </div>
-    </header>
+   {% include './components/header.html' %}
 
 
     {% block content %}
