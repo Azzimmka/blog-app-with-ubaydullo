@@ -1,0 +1,11 @@
+<div class="w-full">
+
+    <div class="max-w-[1240px] m-auto flex flex-wrap gap-3 mt-12 justify-start">
+        <a href="{% url 'home' %}" class=" cursor-pointer py-[10px] px-[16px] border border-1 border-gray-400 rounded-[25px] hover:bg-[#111827] hover:text-white transition-all duration-300">Все</a>
+        {% for category in categories %}
+        <a href="{% url 'category' category.id %}" class="py-[10px] px-[16px] border border-1 border-gray-400 rounded-[25px] hover:bg-[#111827] hover:text-white transition-all duration-300">
+            {{ category.title }}
+        </a>
+        {% endfor %}
+    </div>
+</div>

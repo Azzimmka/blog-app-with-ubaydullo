@@ -5,18 +5,9 @@
 {% block content %}
 
    {% include './components/hero.html' %}
+   {% include './components/categories.html' %}
 
-<div class="w-full">
 
-    <div class="max-w-[1240px] m-auto flex flex-wrap gap-3 mt-12 justify-start">
-        <a href="" class=" cursor-pointer py-[10px] px-[16px] border border-1 border-gray-400 rounded-[25px] hover:bg-[#111827] hover:text-white transition-all duration-300">Все</a>
-        {% for category in categories %}
-        <a href="{% url 'category' category.id %}" class="py-[10px] px-[16px] border border-1 border-gray-400 rounded-[25px] hover:bg-[#111827] hover:text-white transition-all duration-300">
-            {{ category.title }}
-        </a>
-        {% endfor %}
-    </div>
-</div>
 
 <div class="flex justify-around flex-wrap align-center max-w[1200px] m-auto mt-[100px] ">
     {% for i in articles %}
@@ -30,11 +21,10 @@
         </div>
         <div class="flex flex-col gap-[12px]  items-start px-[18px] ">
             <h2 class="text-[22px] font-bold">{{ i.title }}</h2>
-            <p class="text-gray-500">{{ i.description }}</p>
+            <p class="text-gray-500">{{ i.description | slice:":50" }}...</p>
         </div>
 
         <div class="flex items-center">
-            <p class="absolute bottom-[5px] ">articles/{{ i.slug }}</p>
             <button class=" absolute bottom-[5px] right-[5px]"><a href="{% url 'slug-detail' i.slug %}">Читать →</a></button>
         </div>
     </div>

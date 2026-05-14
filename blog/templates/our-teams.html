@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<section>
+    <div class="max-w-[1240px] m-auto">
+        <p class="text-[#5267FF] text-[12px] font-bold">НАША КОМАНДА</p>
+        <h1 class="text-[48px] font-bold mt-[10px]">
+            Люди, которые помогают <br />
+            студентам расти
+        </h1>
+    </div>
+     
+    <div class="max-w-[1240px] m-auto mt-[100px] flex flex-row justify-between items-start">
+        {% for team in teams %}
+        <div class="card bg-base-100 w-96 min-h-[300px] shadow-sm pt-[10px]">
+            <figure>
+                <img class="h-[200px] w-[200px] rounded-[100px]"
+                src="{{ team.image.url }}"
+                alt="Shoes"
+                />
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title">{{ team.name }}</h2>
+                <p>
+                    {{ team.description | slice:":41" }} <span class="font-bold text-[20px]">...</span>
+                </p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-primary"> {{ team.skill }}</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

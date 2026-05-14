@@ -20,3 +20,19 @@ class Articles(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Our_team(models.Model):
+    name = models.CharField(max_length=30)
+    skill = models.CharField(max_length=50)
+    description = models.TextField()
+    image = models.ImageField(upload_to='teams')
+    
+    def __str__(self):
+        return self.name
+    
+    
+    class Meta:
+        verbose_name = 'team'
+        verbose_name_plural = 'teams'
+    

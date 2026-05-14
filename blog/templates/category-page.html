@@ -5,28 +5,31 @@
     
     <h1 class="text-3xl font-bold mb-10">{{ title }}</h1>
 
-    <div class="flex flex-wrap gap-5">
-        {% for i in articles %}
-            <div class="w-[340px] border p-4 rounded-lg">
-                {% if i.image %}
-                    <img src="{{ i.image.url }}" class="w-full h-40 object-cover rounded mb-3">
-                {% endif %}
-                
-                <h2 class="font-bold text-lg">
-                    <a href="{% url 'slug-detail' i.slug %}">{{ i.title }}</a>
-                </h2>
-                <div>
-                    <h4>Описание</h4>
-                    <p class="text-sm text-gray-500">{{ i.description }}</p>
-                </div>
+    {% include './components/categories.html' %}
 
-                <div>
-                    <h4>Просмотры</h4>
-                    <p class="text-sm text-gray-500">{{ i.view }} просмотров</p>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    <div class="flex justify-around flex-wrap align-center max-w[1200px] m-auto mt-[100px] ">
+    {% for i in articles %}
+    <div class="relative w-[374px] min-h-[430px] rounded-[28px] mt-[10px] bg-white shadow-xl rounded-[20px] p-[10px] text-center">
+        {% if i.image.url %}
+            <img class="w-[350px] rounded-[20px]" src="{{ i.image.url }}" alt="">
+        {% endif %}
+        <div class="flex justify-between mt-[18px] mb-[12px] px-[18px]">
+            <p class="px-[12px] py-[10px] border bg-[#F6F8FB] border-[#EDF1F6] rounded-[999px]">{{ i.category }}</p>
+            <p class="px-[12px] py-[10px] border bg-[#F6F8FB] border-[#EDF1F6] rounded-[999px] flex items-center gap-[6px]"> <img src="/media/krug.svg" alt="error"> {{ i.view }}</p>
+        </div>
+        <div class="flex flex-col gap-[12px]  items-start px-[18px] ">
+            <h2 class="text-[22px] font-bold">{{ i.title }}</h2>
+            <p class="text-gray-500">{{ i.description }}</p>
+        </div>
+
+        <div class="flex items-center">
+            <p class="absolute bottom-[5px] ">articles/{{ i.slug }}</p>
+            <button class=" absolute bottom-[5px] right-[5px]"><a href="{% url 'slug-detail' i.slug %}">Читать →</a></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 
 </main>
 {% endblock %}

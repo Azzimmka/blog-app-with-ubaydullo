@@ -19,11 +19,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+media_url = settings.MEDIA_URL
+media_root = settings.MEDIA_ROOT
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls'))
 ]
 
 if settings.DEBUG == True:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(media_url, document_root=media_root)
     

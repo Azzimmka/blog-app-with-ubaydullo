@@ -1,5 +1,5 @@
- <header class="w-full">
-        <div class="max-w-[1240px] m-auto flex justify-between items-center h-[88px] bg-white mt-[50px] px-[30px] rounded-[26px]" >
+ <header class="w-full pt-[50px]">
+        <div class="max-w-[1240px] m-auto flex justify-between items-center h-[88px] bg-white  px-[30px] rounded-[26px]" >
             <a href="{% url 'home' %}" class="text-[#111827] text-[24px] font-bold">IT.blog</a>
 
             <style>
@@ -7,11 +7,11 @@
                     cursor: pointer;
                 }
             </style>
-            <nav class="flex gap-[20px] justify-between items-center px-[20px] w-[494px] h-[45px] bg-[#EDF1F6] rounded-[18px]">
-                <a href="" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Главная</a>
+            <nav class="flex gap-[20px] justify-between items-center px-[20px] w-[510px] h-[45px] bg-[#EDF1F6] rounded-[18px]">
+                <a href="{% url 'home'  %}" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Главная</a>
                 <a href="" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Статьи</a>
                 <a href="" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Категории</a>
-                <a href="" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">О проекте</a>
+                <a href="{% url 'our-team' %}" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Наша команда</a>
             </nav>
             <div>
                 {% if user.is_authenticated %}

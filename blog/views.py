@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Articles, Category
+from .models import Articles, Category, Our_team
 # Create your views here.
 
 
@@ -7,9 +7,7 @@ def home(request):
     # ['title', 'description', 'views', ...]
     articles = Articles.objects.all()
     categories = Category.objects.all()
-    context = {
-        'articles': articles,
-        "categories": categories}
+    context = {'articles': articles, 'categories': categories}
     return render(request, 'index.html', context=context)
 
 
@@ -31,6 +29,19 @@ def detail_slug_articles(request, slug):
 
 def category_page_view(request, category_id):
     articles = Articles.objects.filter(category=category_id)
+    categories = Category.objects.all()
     
 
-    return render(request, 'category-page.html', {"articles": articles})
+    return render(request, 'category-page.html', {"articles": articles, 'categories': categories})
+
+
+
+def our_team(request):
+    teams = Our_team.objects.all()
+    
+    context = {'teams': teams}
+    
+    return render(request, 'our-teams.html', context)
+    
+    
+    
