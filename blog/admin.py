@@ -6,7 +6,7 @@ from .models import Category, Articles, Our_team
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'view']
-    list_filter = ['category']
+    list_filter = ['category', 'created_at']
     readonly_fields = ['view']
     prepopulated_fields = {"slug": ('title',)}
 

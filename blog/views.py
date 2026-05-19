@@ -23,11 +23,15 @@ def detail_articles(request, pk):
 
 def detail_slug_articles(request, slug):
     article = Articles.objects.get(slug=slug)
+    # greater than your car equal --> gt
+    popular_articles = Articles.objects.filter(view__gt=15)
     
     article.view += 1
     article.save(update_fields=['view'])
     
-    return render(request, 'slug-detail.html', {"article": article})
+
+    
+    return render(request, 'slug-detail.html', {"article": article, 'popular_articles': popular_articles})
 
 
 def category_page_view(request, category_id):

@@ -17,6 +17,7 @@ class Articles(models.Model):
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='articles', null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True) # type: ignore
 
     def __str__(self):
         return self.title

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<main class="max-w-[800px] mx-auto px-6 py-20 font-sans">
+<main class="max-w-[1200px] mx-auto px-6 py-20 font-sans">
     <!-- Хлебные крошки / Категория -->
     <div class="flex items-center gap-4 mb-8">
         <a href="{% url 'home' %}" class="text-slate-400 uppercase tracking-widest">← Назад</a>
@@ -29,6 +29,31 @@
             {{ article.description }}
         </p>
     </article>
+
+    <p>Просмотры: {{ article.view }}</p>
+
+
+    <div class="max-w-[1200px]  flex justify-between flex-wrap align-center m-auto mt-[100px] ">
+    {% for popular in popular_articles %}
+    <div class="relative w-[374px] min-h-[430px] rounded-[28px] mt-[10px] bg-white shadow-xl rounded-[20px] p-[10px] text-center">
+        {% if popular.image.url %}
+            <img class="w-[350px] rounded-[20px]" src="{{ popular.image.url }}" alt="">
+        {% endif %}
+        <div class="flex justify-between mt-[18px] mb-[12px] px-[18px]">
+            <p class="px-[12px] py-[10px] border bg-[#F6F8FB] border-[#EDF1F6] rounded-[999px]">{{ popular.category }}</p>
+            <p class="px-[12px] py-[10px] border bg-[#F6F8FB] border-[#EDF1F6] rounded-[999px] flex items-center gap-[6px]"> <img src="/media/krug.svg" alt="error"> {{ popular.view }}</p>
+        </div>
+        <div class="flex flex-col gap-[12px]  items-start px-[18px] ">
+            <h2 class="text-[22px] font-bold">{{ i.title }}</h2>
+            <p class="text-gray-500">{{ popular.description | slice:":50" }}...</p>
+        </div>
+
+        <div class="flex items-center">
+            <button class=" absolute bottom-[5px] right-[5px]"><a href="{% url 'slug-detail' popular.slug %}">Читать →</a></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 </main>
 {% endblock %}

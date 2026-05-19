@@ -1,18 +1,20 @@
+
+
+
  <header class="w-full pt-[50px]">
         <div class="max-w-[1240px] m-auto flex justify-between items-center h-[88px] bg-white  px-[30px] rounded-[26px]" >
             <a href="{% url 'home' %}" class="text-[#111827] text-[24px] font-bold">IT.blog</a>
 
-            <style>
-                a {
-                    cursor: pointer;
-                }
-            </style>
-            <nav class="flex gap-[20px] justify-between items-center px-[20px] w-[510px] h-[45px] bg-[#EDF1F6] rounded-[18px]">
+<nav
+    id="navbar"
+    class="hidden flex-col absolute top-[130px] left-0 w-full text-center gap-[30px] flex-col text-center bg-[#EDF1F6] rounded-[18px] md:static md:flex md:flex-row md:w-[550px] md:h-[45px] md:items-center md:justify-between md:px-[20px]"
+>
                 <a href="{% url 'home'  %}" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Главная</a>
                 <a href="" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Статьи</a>
                 <a href="" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Категории</a>
                 <a href="{% url 'our-team' %}" class="py-[8px] px-[12px] hover:bg-white rounded-[15px] transition-all duration-200 hover:cursor-pointer">Наша команда</a>
             </nav>
+           
             <div>
                 {% if user.is_authenticated %}
                     <p class="text-black">{{ user.username }}</p>
@@ -22,9 +24,22 @@
                     <button class="w-[130px] h-[41px] rounded-[15px] bg-[#111827] text-white border border-1 border-gray-500"><a href="admin" class="">Регистрация</a></button>
                 </div>
                 {% endif %}
+            </div>
 
-
-
+            <div id="burger" class="w-[20px] md:hidden  flex flex-col justify-between items-center gap-1 cursor-pointer" onclick="this.classList.toggle('active')">
+                <span class=" border w-full h-[2px] bg-black"></span>
+                <span class=" border w-full h-[2px] bg-black"></span>
+                <span class=" border w-full h-[2px] bg-black"></span>
             </div>
         </div>
+
+        <script>
+            let burger = document.getElementById('burger')
+            let navbar = document.getElementById('navbar')
+
+            burger.addEventListener('click', () => {
+                navbar.classList.toggle('hidden')
+                navbar.classList.toggle('flex')
+            })
+        </script>
 </header>
