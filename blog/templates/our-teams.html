@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
 <section>
     <div class="max-w-[1240px] m-auto">
         <p class="text-[#5267FF] text-[12px] font-bold">НАША КОМАНДА</p>
@@ -8,15 +10,25 @@
         </h1>
     </div>
      
-    <div class="max-w-[1240px] m-auto mt-[100px] flex flex-row justify-between items-start">
+    <div class="max-w-[1240px] m-auto mt-[100px] flex flex-row justify-between items-start flex-wrap">
         {% for team in teams %}
-        <div class="card bg-base-100 w-96 min-h-[300px] shadow-sm pt-[10px]">
+        <div class="card bg-base-100 w-96 min-h-[300px] shadow-sm pt-[10px] mt-10">
             <figure>
                 <img class="h-[200px] w-[200px] rounded-[100px]"
-                src="{{ team.image.url }}"
+                src="{% if team.image %}
+                    {{ team.image.url}}
+                    {% else %}
+                    {% static 'images/default.jpg' %}
+                    {% endif %}"
                 alt="Shoes"
                 />
             </figure>
+            {% if team.image %}
+                <p>{{ team.image.url }}</p>
+            {% else %}
+                <p>Image not uploaded</p>
+            {% endif %}
+            <!-- <p>{{ team.image.name }}</p> -->
             <div class="card-body">
                 <h2 class="card-title">{{ team.name }}</h2>
                 <p>

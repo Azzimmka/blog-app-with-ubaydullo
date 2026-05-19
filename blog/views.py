@@ -24,6 +24,9 @@ def detail_articles(request, pk):
 def detail_slug_articles(request, slug):
     article = Articles.objects.get(slug=slug)
     
+    article.view += 1
+    article.save(update_fields=['view'])
+    
     return render(request, 'slug-detail.html', {"article": article})
 
 

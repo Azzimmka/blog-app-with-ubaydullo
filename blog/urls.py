@@ -1,10 +1,17 @@
-from django.urls import  path
+from django.urls import path
 
-from .views import *
+from .views import (
+    category_page_view,
+    detail_articles,
+    detail_slug_articles,
+    home,
+    our_team,
+)
+
 urlpatterns = [
-    path('', home, name='home'),
-    path('detail/<int:pk>/', detail_articles, name='detail'),
-    path('slug-detail/<slug:slug>', detail_slug_articles, name='slug-detail'),
-    path('category/<int:category_id>', category_page_view, name='category'),
-    path('our-team/', our_team, name='our-team')
+    path('', home, name='home'), # type: ignore
+    path('detail/<int:pk>/', detail_articles, name='detail'), # type: ignore
+    path('slug-detail/<slug:slug>', detail_slug_articles, name='slug-detail'), # type: ignore
+    path('category/<int:category_id>', category_page_view, name='category'), # type: ignore
+    path('our-team/', our_team, name='our-team')  # type: ignore
 ]
