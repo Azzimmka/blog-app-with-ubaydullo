@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Articles, Category, Our_team
 # Create your views here.
+from .forms import ArticlesForms
 
 
 def home(request):
@@ -51,4 +52,19 @@ def our_team(request):
     return render(request, 'our-teams.html', context)
     
     
-    
+
+def add_article_form(request):
+    if request.method == 'POST':
+        form = ArticlesForms(request.POST, request.FILES)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('home') #type: ignore
+    else:
+        form = ArticlesForms()
+        
+    context = {
+        'form': form
+    }
+        
+    return render(request, 'add-article.html', context)
