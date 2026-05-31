@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="mx-auto max-w-md py-12">
+    <h1 class="mb-6 text-3xl font-bold">Вход</h1>
+
+    <form action="" method="post" class="space-y-4">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p class="rounded-lg bg-red-50 p-3 text-red-600">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% for field in form %}
+            <div>
+                <label class="mb-2 block font-medium" for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
+
+                {{ field }}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="w-full rounded-lg bg-slate-900 px-4 py-3 text-white hover:bg-slate-700">
+            Войти
+        </button>
+    </form>
+
+    <p class="mt-6 text-sm">
+        Нет аккаунта?
+        <a class="text-blue-600" href="{% url 'register' %}">Создать аккаунт</a>
+    </p>
+</section>
+{% endblock %}

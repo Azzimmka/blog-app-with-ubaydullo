@@ -18,11 +18,19 @@
            
             <div>
                 {% if user.is_authenticated %}
-                    <p class="text-black">{{ user.username }}</p>
+                    <div class="flex items-center gap-[10px]">
+
+                        <p class="text-black">{{ user.username }}</p>
+                        <form action="{% url 'logout' %}"method="post">
+                            {% csrf_token %}
+                            <button class="w-[130px] h-[41px] rounded-[15px] bg-[#111827] text-white border border-1 border-gray-500" type="submit">Выход</button>
+                        </form>
+                    </div>
+
                 {% else %}
                 <div class="">
-                    <button class="w-[85px] h-[41px] rounded-[15px] bg-white border border-1 border-gray-500"><a href="admin" class="">Войти</a></button>
-                    <button class="w-[130px] h-[41px] rounded-[15px] bg-[#111827] text-white border border-1 border-gray-500"><a href="admin" class="">Регистрация</a></button>
+                    <button class="w-[85px] h-[41px] rounded-[15px] bg-white border border-1 border-gray-500"><a href="{% url 'login' %}" class="">Войти</a></button>
+                    <button class="w-[130px] h-[41px] rounded-[15px] bg-[#111827] text-white border border-1 border-gray-500"><a href="{% url 'register' %}" class="">Регистрация</a></button>
                 </div>
                 {% endif %}
             </div>

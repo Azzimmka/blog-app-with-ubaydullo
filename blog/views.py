@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Articles, Category, Our_team
 # Create your views here.
-from .forms import ArticlesForms
+from .forms import ArticlesForms, UserLoginForm, UserRegisterForm
+from django.contrib.auth import  login, logout
 
 
 def home(request):
@@ -54,12 +55,13 @@ def our_team(request):
     
 
 def add_article_form(request):
+    print(request.method)
     if request.method == 'POST':
         form = ArticlesForms(request.POST, request.FILES)
-        
+
         if form.is_valid():
             form.save()
-            return redirect('home') #type: ignore
+            return redirect('home')
     else:
         form = ArticlesForms()
         
@@ -68,3 +70,47 @@ def add_article_form(request):
     }
         
     return render(request, 'add-article.html', context)
+
+
+def user_register_view(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+
+    else:
+        form = UserRegisterForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'register.html', context)
+
+
+def user_login_form(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request, data=request.POST)
+
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+
+            return redirect('home')
+
+    else:
+        form = UserLoginForm(request)
+
+    context = {
+        'form': form
+    }
+
+    return  render(request, 'login.html', context)
+
+
+def user_logout(request):
+    if request.method == 'POST':
+        logout(request)
+    return redirect('home')
